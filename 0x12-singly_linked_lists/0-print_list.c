@@ -1,17 +1,23 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "lists.h"
+
 /**
-* free_list - Realease the memory allocated for a list
-*
-* @head: A pointer to the first node of the list to free
-*/
-void free_list(list_t *head)
+ * print_list - print list of elements
+ * @h: input
+ * Return: Number of Nodes
+ */
+size_t print_list(const list_t *h)
 {
-if (head)
-{
-free_list(head->next);
-if (head->str)
-free(head->str);
-free(head);
+	if (h)
+	{
+		if (h->str)
+			printf("[%d] %s%s", h->len, h->str, "\n");
+		else
+			printf("[%d] %s%s", 0, "(nil)", "\n");
+		if (h->next)
+		{
+			return (1 + print_list(h->next));
+		}
+		return (1);
+	}
+	return (0);
 }
